@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test BUREA</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <!-- Modal Eliminar -->
+    <div id="modal-eliminar" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmar Eliminación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Seguro que desea borrar esta tarea?</p>
+                    <p>No habrá manera de recuperarla</p>
+                    <form action="" method="POST" id="form-eliminar">
+                        <button type="submit" class="btn btn-danger" id="btn-crear_tarea">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal Eliminar -->
+    <!-- Modal Editar -->
+    <div class="modal" id="modal-editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar tarea</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post" id="form-editar">
+                        <div class="form-group">
+                            <label for="titulo">Título</label>
+                            <input type="text" class="form-control" name="titulo-editar" id="titulo-editar">
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <textarea type="text" class="form-control" name="descripcion-editar" id="descripcion-editar"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="prioridad">Prioridad</label>
+                                <select class="form-control" name="prioridad-editar" id="prioridad-editar">
+                                    <option>Alta</option>
+                                    <option>Mediana</option>
+                                    <option>Baja</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="fecha">Fecha a completarse</label>
+                                <input type="date" class="form-control" name="fecha-editar" id="fecha-editar">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="encargado">Encargado</label>
+                            <input type="text" class="form-control" name="encargado-editar" id="encargado-editar">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="btn-crear_tarea">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal Editar -->
+    <div class="container" id="main-container">
+        <div class="row">
+            <div class="tablero col-9">
+                <div class="estados">
+                    <div class="estado-header">
+                        <h3>Backlogs</h3>
+                    </div>
+                    <div class="estado-body" id="backlogs" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+                    </div>
+                </div>
+                <div class="estados">
+                    <div class="estado-header">
+                        <h3>To Do</h3>
+                    </div>
+                    <div class="estado-body" id="toDo" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+                    </div>
+                </div>
+                <div class="estados">
+                    <div class="estado-header">
+                        <h3>Ongoing</h3>
+                    </div>
+                    <div class="estado-body" id="ongoing" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+                    </div>
+                </div>
+                <div class="estados">
+                    <div class="estado-header">
+                        <h3>Done</h3>
+                    </div>
+                    <div class="estado-body" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-tarea col-3">
+                <div class="form-header">
+                    <h3>Crear Tarea</h3>
+                </div>
+                <hr>
+                <form action="" method="post" id="crear_tarea">
+                    <div class="form-group">
+                        <label for="titulo">Título</label>
+                        <input type="text" class="form-control" name="titulo" id="titulo">
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción</label>
+                        <textarea type="text" class="form-control" name="descripcion" id="descripcion"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="prioridad">Prioridad</label>
+                            <select class="form-control" name="prioridad" id="prioridad">
+                                <option>Alta</option>
+                                <option>Mediana</option>
+                                <option>Baja</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="fecha">Fecha a completarse</label>
+                            <input type="date" class="form-control" name="fecha" id="fecha">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="encargado">Encargado</label>
+                        <input type="text" class="form-control" name="encargado" id="encargado">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="btn-crear_tarea">Crear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/crearTarea.js"></script>
+    <script src="assets/js/dragAndDrop.js"></script>
+    <script src="assets/js/eliminarTarea.js"></script>
+    <script src="assets/js/editarTarea.js"></script>
+</body>
+
+</html>

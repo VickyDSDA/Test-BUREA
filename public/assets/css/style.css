@@ -1,0 +1,69 @@
+body {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.container#main-container {
+    margin: .5rem;
+    min-width: 100vw;
+    padding: 1.5rem 3rem;
+}
+
+.card-subtitle#tarea-encargado {
+    color: #333333;
+}
+
+.tablero {
+    display: block;
+    white-space: nowrap;
+    overflow-x: scroll;
+    padding-bottom: 3px;
+}
+
+.estados {
+    display: inline-flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    min-height: 85vh;
+    width: 20rem;
+    height: 100%;
+    background-color: #e6e8ed;
+}
+
+.estado-header {
+    padding: 0rem .5rem;
+}
+
+.estado-body {
+    padding: .5rem;
+    min-height: 100%;
+    max-height: 85vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.card.cards-tareas {
+    margin-bottom: .5rem;
+    white-space: normal;
+}
+
+.card-link {
+    margin-right: 3px;
+}
+
+.form-header {
+    padding: 0rem .5rem;
+    text-align: center;
+}
+
+.moviendo {
+    background-color: gray;
+}
+
+.movido {
+    background-color: #949494
+}
+
+.btn {
+    float: right;
+}
