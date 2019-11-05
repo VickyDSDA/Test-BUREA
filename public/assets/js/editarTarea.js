@@ -19,6 +19,8 @@ $('#form-editar').on('submit', function(ev) {
         .catch(error => console.error('Error en fetch: ', error))
         .then(response => {
             console.log(response);
+            var modalEliminar = $('#modal-eliminar');
+            var modalEditar = $('#modal-editar');
             var html = '';
             if (response.tarea.prioridad === 'Alta') {
                 html += `<div class="card-header text-white bg-warning" id="tarea-titulo">${response.tarea.titulo}</div>`;
@@ -38,6 +40,34 @@ $('#form-editar').on('submit', function(ev) {
             html += `</div>`;
             $(`#${id}`).html(html);
             modalEditar.modal('hide');
+
+            $('.editar-tarea').click(function(event) {
+                event.preventDefault();
+                var idTarea = event.currentTarget.parentNode.parentNode.id;
+                localStorage.setItem('idtarea', idTarea);
+                fetch(`/tareas/${idTarea}`, {
+                        method: 'GET',
+                    }).then(res => res.json())
+                    .catch(error => console.error('Error en fetch: ', error))
+                    .then(response => {
+                        console.log(response);
+                        $('#titulo-editar').val(response.tarea.titulo);
+                        $('#descripcion-editar').val(response.tarea.descripcion);
+                        $('#prioridad-editar').val(response.tarea.prioridad);
+                        var fechaEdit = response.tarea.fecha.split("T");
+                        $('#fecha-editar').val(fechaEdit[0]);
+                        $('#encargado-editar').val(response.tarea.encargado);
+
+                        modalEditar.modal('show');
+                    });
+            });
+
+            $('.eliminar-tarea').click(function(event) {
+                event.preventDefault();
+                var idTarea = event.currentTarget.parentNode.parentNode.id;
+                localStorage.setItem('idtarea', idTarea);
+                modalEliminar.modal('show');
+            });
 
         });
 })
